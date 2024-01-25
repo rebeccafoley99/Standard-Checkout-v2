@@ -6,6 +6,28 @@ window.paypal
         color: 'blue',
         //label: 'paypal'
       },
+      // add function to validate user input
+      onInit: function(data, actions) {
+        // Disable the buttons
+          actions.disable();
+        // Listen for changes to the checkbox
+          document.querySelector('#check')
+            .addEventListener('change', function(event) {
+            // Enable or disable the button when it is checked or unchecked
+              if (event.target.checked) {
+                actions.enable();
+              } else {
+                actions.disable();
+              }
+            });
+          },
+          // onClick is called when the button is clicked
+        onClick: function() {
+        // Show a validation error if the checkbox is not checked
+          if (!document.querySelector('#check').checked) {
+            document.querySelector('#error').classList.remove('hidden');
+          }
+        },
     async createOrder() {
       try {
         const response = await fetch("/api/orders", {
