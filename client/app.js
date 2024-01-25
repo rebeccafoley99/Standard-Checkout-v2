@@ -30,12 +30,10 @@ window.paypal
         },
     async createOrder() {
       try {
-        const accessToken = generateAcess
         const response = await fetch("/api/orders", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: 'Bearer ${accessToken}',
           },
           // use the "body" param to optionally pass additional order information
           // like product ids and quantities
